@@ -2,7 +2,7 @@
 
 ## model = kobert
 
-dataset label => 0~8 (2^3) / 0~26 (3^3)
+dataset label => 0~26 (3^3)
 탄단지
 
 ### [기초대사량 계산기](https://u-health.dobong.go.kr/hcal/metabolism.asp)
