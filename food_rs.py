@@ -129,4 +129,5 @@ def rs(num):
     for i in range(3):
         rs_list.append(final[final['label'] == num].iat[rand+i,0])
     print(rs)
-    return rs_list
+    json_ = {'rs':rs_list}
+    return json.dumps(json_, ensure_ascii=False)
