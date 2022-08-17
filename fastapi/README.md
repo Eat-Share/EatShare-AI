@@ -5,20 +5,20 @@ uvicorn main:app --reload
 
 [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
-#### python ±âÁØÀ¸·Î input°ú returnÀÓ. input´Â jsonÀ¸·Î ´øÁ®ÁÖ¸é ÀÌÂÊ¿¡¼­ ÆÄ½ÌÇØ¼­ ½áµµµË´Ï´ç.
+#### python ê¸°ì¤€ìœ¼ë¡œ inputê³¼ returnì„. inputëŠ” jsonìœ¼ë¡œ ë˜ì ¸ì£¼ë©´ ì´ìª½ì—ì„œ íŒŒì‹±í•´ì„œ ì¨ë„ë©ë‹ˆë‹¹.
 ### /food_rs
 ```py
 input =  ["dafasd","adfasdf","Asdfasdf","dfasdgs"]
 return = {
-            "rs": ["¿À»ïºÒ°í±â", "¶ó¸é", "ÀÀ¾Ö"],
+            "rs": ["ì˜¤ì‚¼ë¶ˆê³ ê¸°", "ë¼ë©´", "ì‘ì• "],
          }
 ```
 
 ### /category_rs
 ```py
-input =  ["dafasd","adfasdf","Asdfasdf","dfasdgs"]
+input = int a
 return = {
-            "group_rs": "¿À»ïºÒ°í±â"
+            "group_rs": "ì˜¤ì‚¼ë¶ˆê³ ê¸°"
          }
 ```
 
