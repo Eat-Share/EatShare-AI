@@ -12,7 +12,7 @@ model.initialize()
 async def root():
     return {"message": "Hello World"}
 
-@app.get("/food_rs")
+@app.post("/food_rs")
 def food_rs():
     with session_factory() as session:
         #user history api 받아오기 + 전처리 -> 
@@ -24,7 +24,7 @@ def food_rs():
         }
         """
 
-@app.get("/category_rs")
+@app.post("/category_rs")
 def category_rs():
     with session_factory() as session:
         #input = num(int)
@@ -42,7 +42,7 @@ def category_rs():
         }
         """
 
-@app.get("/category_label")
+@app.post("/category_label")
 def category_label():
     with session_factory() as session:
         #user history api 받아오기 + 전처리
