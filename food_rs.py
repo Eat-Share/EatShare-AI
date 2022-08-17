@@ -1,4 +1,4 @@
-import torch
+ï»¿import torch
 from torch import nn
 import torch.nn.functional as F
 import torch.optim as optim
@@ -21,7 +21,6 @@ from kobert.pytorch_kobert import get_pytorch_kobert_model
 
 from kobert_hf.kobert_tokenizer import KoBERTTokenizer
 
-
 class BERTDataset(Dataset):
     def __init__(self, dataset, sent_idx, label_idx, bert_tokenizer,vocab, max_len,
                  pad, pair):
@@ -42,7 +41,7 @@ class BERTClassifier(nn.Module):
     def __init__(self,
                  bert,
                  hidden_size = 768,
-                 num_classes=7,
+                 num_classes=27,
                  dr_rate=None,
                  params=None):
         super(BERTClassifier, self).__init__()
@@ -68,30 +67,30 @@ class BERTClassifier(nn.Module):
         return self.classifier(out)
 
 
-def initialize():
-    global model
-	df = pd.read_csv('./dataset_lite.csv', index_col=0)
-	df = pd.DataFrame(df)
-	final = pd.read_csv('./final.csv', index_col=0)
-	final = pd.DataFrame(final)
-	bertmodel, vocab = get_pytorch_kobert_model('C:\\Users\\cpprh/.cache\\huggingface\\transformers', '.cache')
-	tokenizer = KoBERTTokenizer.from_pretrained('skt/kobert-base-v1')
-	tok=tokenizer.tokenize
-    device = torch.device("cuda:0")
 
-    max_len = 64
-    batch_size = 4
-    warmup_ratio = 0.1
-    num_epochs = 5  
-    max_grad_norm = 1
-    log_interval = 200
-    learning_rate =  5e-5
+# df = pd.read_csv('./dataset_lite.csv', index_col=0)
+# df = pd.DataFrame(df)
+final = pd.read_csv('./../final.csv', index_col=0)
+final = pd.DataFrame(final)
+bertmodel, vocab = get_pytorch_kobert_model('C:\\Users\\cpprh/.cache\\huggingface\\transformers', '.cache')
+tokenizer = KoBERTTokenizer.from_pretrained('skt/kobert-base-v1')
+tok=tokenizer.tokenize
+device = torch.device("cuda:0")
 
-    ## ÇĞ½À ¸ğµ¨ ·Îµå
-    PATH = './model/'
-    model = torch.load(PATH + 'KoBERT_test.pt')  # ÀüÃ¼ ¸ğµ¨À» ÅëÂ°·Î ºÒ·¯¿È, Å¬·¡½º ¼±¾ğ ÇÊ¼ö
-    model.load_state_dict(torch.load(PATH + 'model_state_dict.pt'))  # state_dict¸¦ ºÒ·¯ ¿Â ÈÄ, ¸ğµ¨¿¡ ÀúÀå
-    model.eval()
+max_len = 64
+batch_size = 4
+warmup_ratio = 0.1
+num_epochs = 5  
+max_grad_norm = 1
+log_interval = 200
+learning_rate =  5e-5
+
+## í•™ìŠµ ëª¨ë¸ ë¡œë“œ
+PATH = './../model/'
+#model = torch.load(PATH + 'KoBERT_test.pt')  # ì „ì²´ ëª¨ë¸ì„ í†µì§¸ë¡œ ë¶ˆëŸ¬ì˜´, í´ë˜ìŠ¤ ì„ ì–¸ í•„ìˆ˜
+model = BERTClassifier(bertmodel,  dr_rate=0.5).to(device)
+model.load_state_dict(torch.load(PATH + 'model_state_dict.pt'))  # state_dictë¥¼ ë¶ˆëŸ¬ ì˜¨ í›„, ëª¨ë¸ì— ì €ì¥
+model.eval()
 
 
 def predict(predict_sentence):
@@ -130,4 +129,4 @@ def rs(num):
         rs_list.append(final[final['label'] == num].iat[rand+i,0])
     print(rs)
     json_ = {'rs':rs_list}
-    return json.dumps(json_, ensure_ascii=False)
+    return json_
