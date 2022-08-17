@@ -18,3 +18,4 @@ def category_label(str_):
 
 def category_rs(num):
     return df[df["category"] == num].iloc[2, 0] #ex) '¿À»ïºÒ°í±â'
+
