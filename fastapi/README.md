@@ -8,24 +8,24 @@ uvicorn main:app --reload
 #### python 기준으로 input과 return임. input는 json으로 던져주면 이쪽에서 파싱해서 써도됩니당.
 ### /food_rs
 ```py
-input =  ["dafasd","adfasdf","Asdfasdf","dfasdgs"]
+input =  { "historys" : ["소불고기덮밥", "새싹육회점보비빔밥"] }
 return = {
-            "rs": ["오삼불고기", "라면", "응애"],
+            "rs" : ["오삼불고기", "라면", "응애"],
          }
 ```
 
 ### /category_rs
 ```py
-input = int a
+input = { "labelId" : 0 }
 return = {
-            "group_rs": "오삼불고기"
+            "group_rs" : "오삼불고기"
          }
 ```
 
 ### /category_label
 ```py
-input =  ["dafasd","adfasdf","Asdfasdf","dfasdgs"]
+input =  { "historys" : ["소불고기덮밥", "새싹육회점보비빔밥"] }
 return = {
-            "label_id": "22" #0~300
+            "label_id" : "22" #0~300
          }
 ```
